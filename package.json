@@ -1,0 +1,12 @@
+{
+  "name": "discord-dota-bot-v2",
+  "packageManager": "yarn@3.0.2",
+  "scripts": {
+    "lint": "standard --fix",
+    "deploy": "serverless deploy"
+  },
+  "devDependencies": {
+    "serverless": "^2.59.0",
+    "standard": "^16.0.3"
+  }
+}

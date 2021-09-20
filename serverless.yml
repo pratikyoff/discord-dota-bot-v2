@@ -1,0 +1,26 @@
+# serverless.yml
+service: dota-discord-bot
+useDotenv: true
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  versionFunctions: false # optional, default is true
+
+functions:
+  dota-discord-bot-match-puller:
+    handler: src/index.handler # required, handler set in AWS Lambda
+    name: dota-discord-bot-match-puller # optional, Deployed Lambda name
+    description: Pulls played match details in the last 5 minutes # optional, Description to publish to AWS
+    memorySize: 128 # optional, in MB, default is 1024
+    timeout: 30 # optional, in seconds, default is 6
+    events:
+      - schedule:
+          rate: rate(5 minutes)
+
+package:
+  patterns:
+    - '!./**'
+    - '!.yarn/**'
+    - './src/**'
+    - './node_modules/**'
