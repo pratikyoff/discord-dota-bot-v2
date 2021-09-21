@@ -3,6 +3,8 @@ const { sendMatchMessage } = require('./discordActions')
 const { PLAYER_INFO } = require('./constants')
 const { getLastPlayedMatchOfPlayer, getMatch } = require('./openDotaActions')
 
+const relevantSteamIds = PLAYER_INFO.map(p => p.steamId)
+
 const handler = async event => {
   const matchIdsToFetch = new Set()
   for (const playerInfo of PLAYER_INFO) {
@@ -22,12 +24,27 @@ const handler = async event => {
     }
   }
 
-  for (const match of matchesToProcess) {
-    
-  }
+  const matchesDataForDiscord = matchesToProcess.map(match => {
+    const relevantPlayers = match.players.filter(player => relevantSteamIds.includes(String(player.account_id)))
+    const toReturn = {
+      matchId: match.match_id,
+      players: relevantPlayers.map(player => {
+        const playerInfo = PLAYER_INFO.find(pInfo => pInfo.steamId === String(player.account_id))
+        const { nick, discordId } = playerInfo
+        return {
+          discordId,
+          nick,
+          win: player.isRadiant === match.radiant_win,
+          kills: player.kills,
+          deaths: player.deaths,
+          assists: player.assists
+        }
+      })
+    }
+    return toReturn
+  })
 
-  const result = await sendMatchMessage('abc')
-  console.log(result)
+  await sendMatchMessage(matchesDataForDiscord)
 }
 
 module.exports = { handler }
