@@ -13,10 +13,10 @@ functions:
     name: dota-discord-bot-match-puller # optional, Deployed Lambda name
     description: Pulls played match details in the last 5 minutes # optional, Description to publish to AWS
     memorySize: 128 # optional, in MB, default is 1024
-    timeout: 30 # optional, in seconds, default is 6
+    timeout: 60 # optional, in seconds, default is 6
     events:
       - schedule:
-          rate: rate(5 minutes)
+          rate: rate(10 minutes)
 
 package:
   patterns:

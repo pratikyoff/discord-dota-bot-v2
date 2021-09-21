@@ -1,12 +1,17 @@
 {
   "name": "discord-dota-bot-v2",
-  "packageManager": "yarn@3.0.2",
   "scripts": {
     "lint": "standard --fix",
-    "deploy": "serverless deploy"
+    "deploy": "serverless deploy",
+    "start": "node invoke.js"
   },
   "devDependencies": {
     "serverless": "^2.59.0",
     "standard": "^16.0.3"
+  },
+  "dependencies": {
+    "axios": "^0.21.4",
+    "dotenv": "^10.0.0",
+    "moment-timezone": "^0.5.33"
   }
 }
