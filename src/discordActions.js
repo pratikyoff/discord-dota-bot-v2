@@ -2,7 +2,6 @@ const axios = require('axios').default
 const baseUrl = process.env.DISCORD_BASE_URL
 
 const sendMatchMessage = async (matchesData) => {
-  if (matchesData.length === 0) return
   for (const matchData of matchesData) {
     let content = ''
     for (const player of matchData.players) {

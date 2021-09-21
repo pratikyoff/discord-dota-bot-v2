@@ -37,7 +37,8 @@ const handler = async event => {
           win: player.isRadiant === match.radiant_win,
           kills: player.kills,
           deaths: player.deaths,
-          assists: player.assists
+          assists: player.assists,
+          hero: player.hero_id
         }
       })
     }

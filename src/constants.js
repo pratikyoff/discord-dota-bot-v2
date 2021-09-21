@@ -8,7 +8,8 @@ const PLAYER_INFO = [
   { name: 'tushar', discordId: '460080097299267584', steamId: '443689621' },
   { name: 'fused', discordId: '487982745713115137', steamId: '139572950' },
   { name: 'mafwar55', discordId: '487982745713115137', steamId: '192045349', nick: 'fused-smurf' },
-  { name: 'Brutal.Savage.Rekt', discordId: '162522319737061376', steamId: '317412501', nick: 'Brutal.Savage.Rekt' }
+  { name: 'Brutal.Savage.Rekt', discordId: '162522319737061376', steamId: '317412501', nick: 'Brutal.Savage.Rekt' },
+  { name: 'Chowath', discordId: '864220271291793420', steamId: '1248164348' }
 ]
 
 module.exports = {
