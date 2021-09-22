@@ -9,6 +9,7 @@ const handler = async event => {
   const matchIdsToFetch = new Set()
   for (const playerInfo of PLAYER_INFO) {
     const lastMatch = await getLastPlayedMatchOfPlayer(playerInfo.steamId)
+    console.log('Fetched last played match of ' + playerInfo.name)
     if (lastMatch) {
       matchIdsToFetch.add(lastMatch.match_id)
     }
@@ -16,9 +17,11 @@ const handler = async event => {
 
   const matchesToProcess = []
   for (const matchId of matchIdsToFetch) {
+    console.log('Fetching match with id ' + matchId)
     const match = await getMatch(matchId)
     const matchEndTime = moment((match.start_time + match.duration) * 1000)
     const differenceInMinutes = moment().diff(matchEndTime, 'minutes')
+    console.log('Difference in minutes ' + differenceInMinutes)
     if (differenceInMinutes <= 10) {
       matchesToProcess.push(match)
     }

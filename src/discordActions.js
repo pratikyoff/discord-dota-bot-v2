@@ -11,7 +11,7 @@ const sendMatchMessage = async (matchesData) => {
     content += `OpenDota: https://www.opendota.com/matches/${matchData.matchId}`
 
     try {
-      const result = await axios({
+      await axios({
         method: 'POST',
         url: `${baseUrl}/channels/${process.env.DISCORD_UPDATE_CHANNEL_ID}/messages`,
         headers: {
