@@ -5,6 +5,7 @@ const { getLastPlayedMatchOfPlayer, getMatch } = require('./openDotaActions')
 const { heroNames } = require('./heroNames')
 
 const relevantSteamIds = PLAYER_INFO.map(p => p.steamId)
+const gameTimeOffsetInMins = 4
 
 const handler = async event => {
   const matchIdsToFetch = new Set()
@@ -20,10 +21,10 @@ const handler = async event => {
   for (const matchId of matchIdsToFetch) {
     console.log('Fetching match with id ' + matchId)
     const match = await getMatch(matchId)
-    const matchEndTime = moment((match.start_time + match.duration) * 1000)
+    const matchEndTime = moment((match.start_time + match.duration) * 1000).add(gameTimeOffsetInMins, 'minutes')
     const differenceInMinutes = moment().diff(matchEndTime, 'minutes')
     console.log('Difference in minutes ' + differenceInMinutes)
-    if (differenceInMinutes <= 15) {
+    if (differenceInMinutes <= 10) {
       matchesToProcess.push(match)
     }
   }

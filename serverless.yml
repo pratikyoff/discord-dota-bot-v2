@@ -16,7 +16,7 @@ functions:
     timeout: 60 # optional, in seconds, default is 6
     events:
       - schedule:
-          rate: rate(15 minutes)
+          rate: rate(10 minutes)
 
 package:
   patterns:
