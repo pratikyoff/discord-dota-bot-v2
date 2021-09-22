@@ -2,6 +2,7 @@ const moment = require('moment-timezone')
 const { sendMatchMessage } = require('./discordActions')
 const { PLAYER_INFO } = require('./constants')
 const { getLastPlayedMatchOfPlayer, getMatch } = require('./openDotaActions')
+const { heroNames } = require('./heroNames')
 
 const relevantSteamIds = PLAYER_INFO.map(p => p.steamId)
 
@@ -31,6 +32,7 @@ const handler = async event => {
     const relevantPlayers = match.players.filter(player => relevantSteamIds.includes(String(player.account_id)))
     const toReturn = {
       matchId: match.match_id,
+      isRanked: match.lobby_type === 7,
       players: relevantPlayers.map(player => {
         const playerInfo = PLAYER_INFO.find(pInfo => pInfo.steamId === String(player.account_id))
         const { nick, discordId } = playerInfo
@@ -41,7 +43,7 @@ const handler = async event => {
           kills: player.kills,
           deaths: player.deaths,
           assists: player.assists,
-          hero: player.hero_id
+          hero: heroNames.find(hn => hn.id === player.hero_id)?.name || player.hero_id
         }
       })
     }

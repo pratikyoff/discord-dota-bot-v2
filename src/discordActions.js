@@ -5,7 +5,8 @@ const sendMatchMessage = async (matchesData) => {
   for (const matchData of matchesData) {
     let content = ''
     for (const player of matchData.players) {
-      content += `<@${player.discordId}>${player.nick ? `(${player.nick})` : ''} **${player.win ? 'won' : 'lost'}** a match.\n`
+      content += `<@${player.discordId}>${player.nick ? `(${player.nick})` : ''} **${player.win ? 'won' : 'lost'}** a ${matchData.isRanked ? 'ranked' : 'normal'} match.\n`
+      content += `**Hero**: ${player.hero}\n`
       content += `**KDA**: ${player.kills}/${player.deaths}/${player.assists}\n`
     }
     content += `OpenDota: https://www.opendota.com/matches/${matchData.matchId}`
