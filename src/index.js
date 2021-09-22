@@ -22,7 +22,7 @@ const handler = async event => {
     const matchEndTime = moment((match.start_time + match.duration) * 1000)
     const differenceInMinutes = moment().diff(matchEndTime, 'minutes')
     console.log('Difference in minutes ' + differenceInMinutes)
-    if (differenceInMinutes <= 10) {
+    if (differenceInMinutes <= 15) {
       matchesToProcess.push(match)
     }
   }
