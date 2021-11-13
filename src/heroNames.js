@@ -119,7 +119,9 @@ const heroNames = [
   { id: 126, name: 'Void Spirit' },
   { id: 128, name: 'Snapfire' },
   { id: 129, name: 'Mars' },
-  { id: 135, name: 'Dawnbreaker' }]
+  { id: 135, name: 'Dawnbreaker' },
+  { id: 136, name: 'Marci' }
+]
 
 module.exports = {
   heroNames
